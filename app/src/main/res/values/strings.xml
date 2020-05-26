@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">MyCovid19 Report</string>
+    <string-array name="Region">
+    <item>Beni Mellal Khenifra</item>
+    <item>Casa Settat</item>
+    <item>Daraa tafilalet</item>
+    <item>Dakhla Oued Ed Dahab</item>
+    <item>Fes meknes</item>
+    <item>Guelmim Oued Noun</item>
+    <item>Laâyoune Sakia El Hamra</item>
+    <item>Marrakech Safi</item>
+    <item>Oriental</item>
+    <item>Rabat Sale Kenitra</item>
+    <item>Souss Massa</item>
+    <item>Tanger Tetouan Al Hoceima</item>
+    </string-array>
 </resources>
