@@ -18,27 +18,36 @@
 
             <TextView
                 android:id="@+id/CaseID"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_width="72dp"
+                android:layout_height="21dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/circles"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="372dp"
                 tools:text="Cases" />
 
             <TextView
                 android:id="@+id/DateID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintStart_toEndOf="@+id/RegionID"
-                tools:layout_editor_absoluteY="8dp"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="Date" />
 
             <TextView
                 android:id="@+id/RegionID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:layout_editor_absoluteX="-1dp"
-                tools:layout_editor_absoluteY="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="Region" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

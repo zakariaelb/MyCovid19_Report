@@ -1,6 +1,7 @@
 package digiplus.ma.mycovid19report;
 
 import android.content.Context;
+import android.icu.text.SimpleDateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,48 +12,47 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.Date;
+
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+private ArrayList<Cdata> mCdatas;
 
-    String Region_data[];
-    int Image[];
-    Context context;
-    public MyAdapter(Context ct, String region[], int Img[]){
-    context = ct;
-    Region_data = region;
-    Image = Img;
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+    TextView mRegion, mCases, mDate;
 
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            mRegion = itemView.findViewById(R.id.RegionID);
+            mCases = itemView.findViewById(R.id.CaseID);
+            mDate = itemView.findViewById(R.id.DateID);
+        }
+    }
+
+    public MyAdapter(ArrayList<Cdata> Cdatas){
+         mCdatas = Cdatas;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        LayoutInflater inflater =   LayoutInflater.from(context);
-        View v = inflater.inflate(R.layout.list_items, parent, false);
-    return new MyViewHolder(v);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_items, parent, false);
+        MyViewHolder MyVH = new MyViewHolder(v);
+        return MyVH;
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-    holder.mytxt.setText(Region_data[position]);
-    //holder.myImg.setImageResource(Img[position]);
+    Cdata currentData = mCdatas.get(position);
+        holder.mRegion.setText(currentData.getmRegion());
+        holder.mCases.setText(currentData.getmCases());
+        holder.mDate.setText(currentData.getmTimeInMilliseconds());
     }
 
     @Override
     public int getItemCount() {
-        return Region_data.length;
-    }
-
-    public class MyViewHolder extends RecyclerView.ViewHolder{
-
-        TextView mytxt;
-        ImageView myImg;
-
-        public MyViewHolder(@NonNull View itemView) {
-            super(itemView);
-            mytxt = itemView.findViewById(R.id.RegionID);
-
-            //myImg = itemView.findViewById(R.id.ImageID);
-        }
+        return mCdatas.size();
     }
 }
