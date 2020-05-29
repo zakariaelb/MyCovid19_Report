@@ -17,17 +17,17 @@ import com.android.volley.toolbox.Volley;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    RecyclerView recyclerView;
+    //RecyclerView recyclerView;
     //data<Cdata> data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ArrayList<Cdata> Cdatas = new ArrayList<>();//QueryUtils.extractEarthquakes();
-        Cdatas.add(new Cdata("Rabat","DATE1", "1"));
-        Cdatas.add(new Cdata("Rabat","DATE1", "2"));
-        Cdatas.add(new Cdata("Rabat","DATE1", "3"));
+        ArrayList<Cdata> Cdatas = QueryUtils.extractDATA(); // < new ArrayList<>();
+        //Cdatas.add(new Cdata("Rabat","DATE1", "1"));
+        //Cdatas.add(new Cdata("Rabat","DATE1", "2"));
+        //Cdatas.add(new Cdata("Rabat","DATE1", "3"));
 
         RecyclerView recyclerView = findViewById(R.id.RootViewID);
         recyclerView.setHasFixedSize(true);
