@@ -17,6 +17,17 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/Region_offsetID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                tools:text="OFFSET"
+                app:layout_constraintStart_toEndOf="@+id/RegionID"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
                 android:id="@+id/RegionID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -34,7 +45,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                app:layout_constraintStart_toEndOf="@+id/RegionID"
+                app:layout_constraintStart_toEndOf="@+id/Region_offsetID"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Date" />
 
@@ -42,11 +53,14 @@
                 android:id="@+id/CaseID"
                 android:layout_width="72dp"
                 android:layout_height="21dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:background="@drawable/circles"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/timeID"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Cases" />
 
@@ -54,8 +68,8 @@
                 android:id="@+id/timeID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginLeft="28dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toEndOf="@+id/DateID"
                 app:layout_constraintTop_toTopOf="parent"
