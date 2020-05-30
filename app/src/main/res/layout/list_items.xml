@@ -3,14 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/list"
+    android:padding="16dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:divider="@null"
+    android:dividerHeight="0dp"
     tools:context=".MainActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -23,9 +29,15 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                tools:text="OFFSET"
-                app:layout_constraintStart_toEndOf="@+id/RegionID"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="1"
+                android:textAllCaps="true"
+                android:textColor="@color/textColorRegion"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="OFFSET" />
 
             <TextView
                 android:id="@+id/RegionID"
@@ -33,19 +45,26 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/textColorRegion"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 tools:text="Region" />
 
             <TextView
                 android:id="@+id/DateID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
+                android:layout_gravity="end"
                 android:layout_marginTop="16dp"
-                app:layout_constraintStart_toEndOf="@+id/Region_offsetID"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:textColor="@color/textColorDetails"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@+id/CaseID"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Date" />
 
@@ -53,33 +72,33 @@
                 android:id="@+id/CaseID"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
+                android:layout_gravity="center_vertical"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="8dp"
-                android:layout_gravity="center_vertical"
-                android:gravity="center"
-                android:fontFamily="sans-serif-medium"
-                android:textColor="@android:color/white"
                 android:background="@drawable/circles"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:textColor="@android:color/white"
                 android:textSize="16sp"
-                tools:text="8.9"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/timeID"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="8.9" />
 
             <TextView
                 android:id="@+id/timeID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:layout_marginLeft="28dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintStart_toEndOf="@+id/DateID"
-                app:layout_constraintTop_toTopOf="parent"
+                android:layout_gravity="end"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/textColorDetails"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/DateID"
+                app:layout_constraintTop_toBottomOf="@+id/DateID"
                 tools:text="3:00 PM" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

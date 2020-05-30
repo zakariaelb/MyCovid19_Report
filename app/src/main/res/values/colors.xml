@@ -4,6 +4,11 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
 
+    <!-- UI Effects -->
+    <color name="textColorDetails">#B4BAC0</color>
+    <color name="textColorRegion">#2B3D4D</color>
+
+
     <!-- Color Levels-->
     <color name="Level1">#4A7BA7</color>
     <color name="Level2">#04B4B3</color>
