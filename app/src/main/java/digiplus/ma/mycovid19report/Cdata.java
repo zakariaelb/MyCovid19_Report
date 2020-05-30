@@ -2,11 +2,11 @@ package digiplus.ma.mycovid19report;
 
 public class Cdata {
     private String mRegion;
-    private String mCases;
+    private double mCases;
     //private String mTimeInMilliseconds;
     private long mTimeInMilliseconds;
 
-    public Cdata(String region, String cases, long timeInMilliseconds){
+    public Cdata(String region, double cases, long timeInMilliseconds){
         mRegion = region;
         mCases = cases;
         //mTimeInMilliseconds = timeInMilliseconds;
@@ -17,7 +17,7 @@ public class Cdata {
         return mRegion;
     }
 
-    public String getmCases() {
+    public double getmCases() {
         return mCases;
     }
 

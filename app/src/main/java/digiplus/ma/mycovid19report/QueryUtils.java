@@ -54,7 +54,7 @@ public final class QueryUtils {
             for (int i = 0; i < DATAArray.length(); i++) {
                 JSONObject currentDATA_JSON = DATAArray.getJSONObject(i);
                 JSONObject properties = currentDATA_JSON.getJSONObject("properties");
-                String cases = properties.getString("mag");
+                double cases = properties.getDouble("mag");
                 String region = properties.getString("place");
                 //String date = properties.getString("time");
                 long time = properties.getLong("time");

@@ -2,6 +2,7 @@ package digiplus.ma.mycovid19report;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.icu.text.DecimalFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             dateView = itemView.findViewById(R.id.DateID);
             OFFS = itemView.findViewById(R.id.Region_offsetID);
             nt = itemView.getContext().getString(R.string.near_the);
+
         }
     }
 
@@ -55,9 +57,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Cdata currentData = mCdatas.get(position);
         //holder.mRegion.setText(currentData.getmRegion());
-        holder.mCases.setText(currentData.getmCases());
         //holder.mDate.setText(currentData.getmTimeInMilliseconds());
-
+        String mformatedCases = Formatcases(currentData.getmCases());
+        holder.mCases.setText(mformatedCases);
         Date dateObject = new Date(currentData.getmTimeInMilliseconds());
         String formattedDate = formatDate(dateObject);
         holder.dateView.setText(formattedDate);
@@ -102,5 +104,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private String formatTime(Date dateObject) {
         java.text.SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
         return timeFormat.format(dateObject);
+    }
+
+    private String Formatcases(double cases) {
+        DecimalFormat casesFormat = new DecimalFormat("0.0");
+        return casesFormat.format(cases);
     }
 }
