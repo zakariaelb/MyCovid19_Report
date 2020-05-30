@@ -23,13 +23,22 @@ import java.util.Date;
 import java.util.logging.Level;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+    final private ListItemClickListener mOnClickListener;
     private ArrayList<Cdata> mCdatas;
     private static final String LOCATION_SEPARATOR = " of ";
     private String nt = null;
     private Context ct = null;
     private GradientDrawable CasesCircle;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    /**
+     * The interface that receives onClick messages.
+     */
+    public interface ListItemClickListener {
+        void onListItemClick(int clickedItemIndex);
+    }
+
+
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView mRegion, mCases, mDate, mTime, dateView, OFFS;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -43,14 +52,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             nt = itemView.getContext().getString(R.string.near_the);
             CasesCircle = (GradientDrawable) mCases.getBackground();
             ct = itemView.getContext();
+            itemView.setOnClickListener(this);
+
+        }
 
 
+        @Override
+        public void onClick(View v) {
+            int clickedPosition = getAdapterPosition();
+            mOnClickListener.onListItemClick(clickedPosition);
         }
     }
 
-    public MyAdapter(ArrayList<Cdata> Cdatas) {
-        mCdatas = Cdatas;
-    }
+    public MyAdapter(ArrayList<Cdata> Cdatas, ListItemClickListener listener) {
+        mCdatas = Cdatas; mOnClickListener = listener; }
 
     @NonNull
     @Override

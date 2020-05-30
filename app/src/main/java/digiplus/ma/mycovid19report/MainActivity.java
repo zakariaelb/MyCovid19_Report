@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.media.Image;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -16,9 +17,10 @@ import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MyAdapter.ListItemClickListener{
     //RecyclerView recyclerView;
     //data<Cdata> data;
+    private Toast mToast;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,15 +35,18 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
                 //data = new ArrayList<>();
     //extractData();
-    MyAdapter myAdapter = new MyAdapter(Cdatas);
+    MyAdapter myAdapter = new MyAdapter(Cdatas, this);
     recyclerView.setAdapter(myAdapter);
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
 }
 
-/**µprivate void extractData(){
-    *RequestQueue queue = Volley.newRequestQueue(this);
-    *JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, )
-*
- }**/
-
-  }
+    @Override
+    public void onListItemClick(int clickedItemIndex) {
+        if (mToast != null) {
+            mToast.cancel();
+        }
+        String toastMessage = "Item #" + clickedItemIndex + " clicked.";
+        mToast = Toast.makeText(this, toastMessage, Toast.LENGTH_LONG);
+        mToast.show();
+    }
+}
