@@ -56,9 +56,10 @@ public final class QueryUtils {
                 JSONObject properties = currentDATA_JSON.getJSONObject("properties");
                 String cases = properties.getString("mag");
                 String region = properties.getString("place");
-                String date = properties.getString("time");
+                //String date = properties.getString("time");
+                long time = properties.getLong("time");
 
-                Cdata DATAfromJSON = new Cdata(region,cases,date);
+                Cdata DATAfromJSON = new Cdata(region,cases,time);
                 DATA_List.add(DATAfromJSON);
             }
         } catch (JSONException e) {

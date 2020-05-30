@@ -50,6 +50,17 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Cases" />
 
+            <TextView
+                android:id="@+id/timeID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toEndOf="@+id/DateID"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="3:00 PM" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

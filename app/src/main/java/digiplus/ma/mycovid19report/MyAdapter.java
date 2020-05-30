@@ -1,7 +1,6 @@
 package digiplus.ma.mycovid19report;
 
 import android.content.Context;
-import android.icu.text.SimpleDateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -21,13 +21,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 private ArrayList<Cdata> mCdatas;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-    TextView mRegion, mCases, mDate;
+    TextView mRegion, mCases, mDate, mTime, dateView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             mRegion = itemView.findViewById(R.id.RegionID);
             mCases = itemView.findViewById(R.id.CaseID);
-            mDate = itemView.findViewById(R.id.DateID);
+            //mDate = itemView.findViewById(R.id.DateID);
+            mTime = itemView.findViewById(R.id.timeID);
+            dateView = itemView.findViewById(R.id.DateID);
         }
     }
 
@@ -48,11 +50,33 @@ private ArrayList<Cdata> mCdatas;
     Cdata currentData = mCdatas.get(position);
         holder.mRegion.setText(currentData.getmRegion());
         holder.mCases.setText(currentData.getmCases());
-        holder.mDate.setText(currentData.getmTimeInMilliseconds());
+        //holder.mDate.setText(currentData.getmTimeInMilliseconds());
+
+        Date dateObject = new Date(currentData.getmTimeInMilliseconds());
+        String formattedDate = formatDate(dateObject);
+        holder.dateView.setText(formattedDate);
+        String formattedTime = formatTime(dateObject);
+        holder.mTime.setText(formattedTime);
     }
 
     @Override
     public int getItemCount() {
         return mCdatas.size();
+    }
+
+    /**
+     * Return the formatted date string (i.e. "Mar 3, 1984") from a Date object.
+     */
+    private String formatDate(Date dateObject) {
+        java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("LLL dd, yyyy");
+        return dateFormat.format(dateObject);
+    }
+
+    /**
+     * Return the formatted date string (i.e. "4:30 PM") from a Date object.
+     */
+    private String formatTime(Date dateObject) {
+        java.text.SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
+        return timeFormat.format(dateObject);
     }
 }
