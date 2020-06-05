@@ -15,4 +15,6 @@
     <item>Souss Massa</item>
     <item>Tanger Tetouan Al Hoceima</item>
     </string-array>
+    <string name="no_data_available">No Data Available</string>
+    <string name="no_internet_connection">No internet connection.</string>
 </resources>

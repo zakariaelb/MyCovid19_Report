@@ -25,6 +25,7 @@ import java.util.logging.Level;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     final private ListItemClickListener mOnClickListener;
+
     private List<Cdata> mCdatas;
     private static final String LOCATION_SEPARATOR = " of ";
     private String nt = null;
@@ -50,6 +51,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+
             mRegion = itemView.findViewById(R.id.RegionID);
             mCases = itemView.findViewById(R.id.CaseID);
             //mDate = itemView.findViewById(R.id.DateID);
@@ -124,28 +126,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public int getItemCount() {
         return mCdatas.size();
     }
-
-    /**
-     * Return the formatted date string (i.e. "Mar 3, 1984") from a Date object.
-     */
-    private String formatDate(Date dateObject) {
-        java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("LLL dd, yyyy");
-        return dateFormat.format(dateObject);
-    }
-
-    /**
-     * Return the formatted date string (i.e. "4:30 PM") from a Date object.
-     */
-    private String formatTime(Date dateObject) {
-        java.text.SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
-        return timeFormat.format(dateObject);
-    }
-
-    private String Formatcases(double cases) {
-        DecimalFormat casesFormat = new DecimalFormat("0.0");
-        return casesFormat.format(cases);
-    }
-
     //Helper Colors code :
 
     private int getCasesColor(double cases) {
@@ -186,5 +166,24 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         }
         return ContextCompat.getColor(ct, caseColorResourceId);
     }
+    /**
+     * Return the formatted date string (i.e. "Mar 3, 1984") from a Date object.
+     */
+    private String formatDate(Date dateObject) {
+        java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("LLL dd, yyyy");
+        return dateFormat.format(dateObject);
+    }
 
-}
+    /**
+     * Return the formatted date string (i.e. "4:30 PM") from a Date object.
+     */
+    private String formatTime(Date dateObject) {
+        java.text.SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
+        return timeFormat.format(dateObject);
+    }
+
+    private String Formatcases(double cases) {
+        DecimalFormat casesFormat = new DecimalFormat("0.0");
+        return casesFormat.format(cases);
+    }
+    }

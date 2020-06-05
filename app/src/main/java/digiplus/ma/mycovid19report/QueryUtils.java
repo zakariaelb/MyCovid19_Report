@@ -45,6 +45,31 @@ public final class QueryUtils {
      * directly from the class name QueryUtils (and an object instance of QueryUtils is not needed).
      */
 
+    private QueryUtils() {
+    }
+
+    /**
+     * Query the USGS dataset and return a list of {@link Cdata} objects.
+     */
+    public static List<Cdata> fetchEarthquakeData(String requestUrl) {
+        Log.i(LOG_TAG, "TEST : fetchEarthquakeData() Is Called");
+        // Create URL object
+        URL url = createUrl(requestUrl);
+
+        // Perform HTTP request to the URL and receive a JSON response back
+        String jsonResponse = null;
+        try {
+            jsonResponse = makeHttpRequest(url);
+        } catch (IOException e) {
+            Log.e(LOG_TAG, "Problem making the HTTP request.", e);
+        }
+
+        // Extract relevant fields from the JSON response and create a list of {@link Earthquake}s
+        List<Cdata> Cdatas = extractFeatureFromJson(jsonResponse);
+
+        // Return the list of {@link Earthquake}s
+        return Cdatas;
+    }
     /**
      * Returns new URL object from the given string URL.
      */
@@ -64,7 +89,7 @@ public final class QueryUtils {
     private static String makeHttpRequest(URL url) throws IOException {
         String jsonResponse = "";
 
-        // If the URL is null, then return early.
+        // If the URL is null, then return early
         if (url == null) {
             return jsonResponse;
         }
@@ -119,12 +144,8 @@ public final class QueryUtils {
         }
         return output.toString();
     }
-
-    private QueryUtils() {
-    }
-
     /**
-     * Return a list of {@link Earthquake} objects that has been built up from
+     * Return a list of {@link Cdata} objects that has been built up from
      * parsing a JSON response.
      */
     private static List<Cdata> extractFeatureFromJson(String MyDataJSON) {
@@ -137,22 +158,33 @@ public final class QueryUtils {
 
         List<Cdata> DATA_List = new ArrayList<>();
 
-        // Try to parse the SAMPLE_JSON_RESPONSE. If there's a problem with the way the JSON
+        // Try to parse the JSON response string. If there's a problem with the way the JSON
         // is formatted, a JSONException exception object will be thrown.
         // Catch the exception so the app doesn't crash, and print the error message to the logs.
         try {
-
+            // Create a JSONObject from the JSON response string
             JSONObject baseJsonResponse = new JSONObject(MyDataJSON);
+            // Extract the JSONArray associated with the key called "features",
+            // which represents a list of features.
             JSONArray DATAArray = baseJsonResponse.getJSONArray("features");
+            // For each Data in the CdataArray, create an {@link Cdata} object
             for (int i = 0; i < DATAArray.length(); i++) {
+                // Get a single earthquake at position i within the list
                 JSONObject currentDATA_JSON = DATAArray.getJSONObject(i);
+                // For a given data, extract the JSONObject associated with the
+                // key called "properties", which represents a list of all properties
+                // for that datas.
                 JSONObject properties = currentDATA_JSON.getJSONObject("properties");
+                // Extract the value for the key called "mag"
                 double cases = properties.getDouble("mag");
+                // Extract the value for the key called "place"
                 String region = properties.getString("place");
+                // Extract the value for the key called "time"
                 //String date = properties.getString("time");
                 long time = properties.getLong("time");
-
+                // Create a new {@link Cdata} object with the magnitude, location, time,
                 Cdata DATAfromJSON = new Cdata(region,cases,time);
+                // Add the new {@link Cdata} to the list
                 DATA_List.add(DATAfromJSON);
             }
         } catch (JSONException e) {
@@ -165,26 +197,4 @@ public final class QueryUtils {
         // Return the list
         return DATA_List;
     }
-    /**
-     * Query the USGS dataset and return a list of {@link Earthquake} objects.
-     */
-    public static List<Cdata> fetchEarthquakeData(String requestUrl) {
-        // Create URL object
-        URL url = createUrl(requestUrl);
-
-        // Perform HTTP request to the URL and receive a JSON response back
-        String jsonResponse = null;
-        try {
-            jsonResponse = makeHttpRequest(url);
-        } catch (IOException e) {
-            Log.e(LOG_TAG, "Problem making the HTTP request.", e);
-        }
-
-        // Extract relevant fields from the JSON response and create a list of {@link Earthquake}s
-        List<Cdata> Cdatas = extractFeatureFromJson(jsonResponse);
-
-        // Return the list of {@link Earthquake}s
-        return Cdatas;
-    }
-
 }
